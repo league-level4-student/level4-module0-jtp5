@@ -1,6 +1,7 @@
 package _02_Pixel_Art;
 
 import java.awt.FlowLayout;
+import java.awt.Graphics;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
@@ -47,7 +48,7 @@ public class PixelArtMaker implements MouseListener{
 	public void mousePressed(MouseEvent e) {
 		gp.setColor(csp.getSelectedColor());
 		System.out.println(csp.getSelectedColor());
-		gp.clickPixel(e.getX(), e.getY());
+		gp.clickPixel(e.getX(), e.getY(), csp.getSelectedColor());
 		gp.repaint();
 	}
 
