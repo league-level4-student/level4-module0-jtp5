@@ -29,7 +29,10 @@ public class WorldPanel extends JPanel implements MouseListener, ActionListener 
 		this.cellsPerRow = cpr;
 
 		// 2. Calculate the cell size.
-		cellSize = cpr / w;
+		cellSize = w / cpr;
+		System.out.println(cpr);
+		System.out.println(w);
+		System.out.println(cellSize);
 		// 3. Initialize the cell array to the appropriate size.
 		cells = new Cell[cpr][cpr];
 		// 3. Iterate through the array and initialize each cell.
@@ -37,7 +40,7 @@ public class WorldPanel extends JPanel implements MouseListener, ActionListener 
 		// passing in the location.
 		for (int i = 0; i < cells.length; i++) {
 			for (int j = 0; j < cells[0].length; j++) {
-				cells[i][j] = new Cell(i, j, cellSize);
+				cells[i][j] = new Cell(i * cellSize, j * cellSize, cellSize);
 			}
 		}
 	}
@@ -46,9 +49,10 @@ public class WorldPanel extends JPanel implements MouseListener, ActionListener 
 		// 4. Iterate through each cell and randomly set each
 		// cell's isAlive memeber to true of false
 		Random r = new Random();
+		int rand;
 		for (int i = 0; i < cells.length; i++) {
 			for (int j = 0; j < cells[0].length; j++) {
-				int rand = r.nextInt(2) + 1;
+				rand = r.nextInt(2) + 1; //might be an issue
 				if (rand == 1) {
 					cells[i][j].isAlive = false;
 				} else {
@@ -205,10 +209,11 @@ public class WorldPanel extends JPanel implements MouseListener, ActionListener 
 		// 10. Use e.getX() and e.getY() to determine
 		// which cell is clicked. Then toggle
 		// the isAlive variable for that cell.
-		if (cells[e.getY() / cellSize][e.getX() / cellSize].isAlive == true) {
-			cells[e.getY() / cellSize][e.getX() / cellSize].isAlive = false;
+		System.out.println(e.getY());
+		if (cells[e.getX() / cellSize][e.getY() / cellSize].isAlive == true) {
+			cells[e.getX() / cellSize][e.getY() / cellSize].isAlive = false;
 		} else {
-			cells[e.getY() / cellSize][e.getX() / cellSize].isAlive = true;
+			cells[e.getX() / cellSize][e.getY() / cellSize].isAlive = true;
 		}
 		repaint();
 	}

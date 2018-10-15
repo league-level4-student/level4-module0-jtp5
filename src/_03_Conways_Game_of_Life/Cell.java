@@ -1,5 +1,6 @@
 package _03_Conways_Game_of_Life;
 
+import java.awt.Color;
 import java.awt.Graphics;
 
 public class Cell implements Drawable {
@@ -43,6 +44,12 @@ public class Cell implements Drawable {
 	// draws empty square if cell is dead
 	@Override
 	public void draw(Graphics g) {
-
+		if(isAlive) {
+			g.setColor(Color.BLACK);
+			g.fillRect(x, y, cellSize, cellSize);
+		}
+		else {
+			g.drawRect(x, y, cellSize, cellSize);
+		}
 	}
 }
