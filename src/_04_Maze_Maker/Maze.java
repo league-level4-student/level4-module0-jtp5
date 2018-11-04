@@ -13,7 +13,7 @@ public class Maze {
 		this.height = h;
 
 		// 2. Initialize the cells using the width and height varibles
-		cells = new Cell[height][width];
+		cells = new Cell[width][height];
 		// 3. Iterated through each cell and initialize it
 		// using i and j as the location
 		for (int i = 0; i < cells.length; i++) {
